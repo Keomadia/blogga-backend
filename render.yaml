@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: blogga-flask-app
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn main:app
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: "flask_blogga_db"
+          property: connectionString
