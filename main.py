@@ -2,6 +2,8 @@ from flask import request , jsonify
 from models import *
 from datetime import datetime
 from config import app, db
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
