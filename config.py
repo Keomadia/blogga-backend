@@ -1,12 +1,14 @@
 from flask import Flask
 import os
+from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_migrate import Migrate
 
+
+load_dotenv()
 app = Flask(__name__)
 CORS(app)  
-
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')

@@ -7,8 +7,6 @@ load_dotenv()
 
 
 
-
-
 # POST
 @app.route('/api/blog/new', methods=['POST'])
 def create_blog_post():
