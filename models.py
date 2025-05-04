@@ -33,8 +33,8 @@ class Blog(db.Model):
 class Section(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     blog_id = db.Column(db.Integer, db.ForeignKey('blog.id'), nullable=False)
-    section_title = db.Column(db.String(80), nullable=False)
-    section_content = db.Column(db.Text, nullable=False)
+    section_title = db.Column(db.String(80), nullable=True)
+    section_content = db.Column(db.Text, nullable=True)
     section_img = db.Column(db.String(255), nullable=True)
     section_list = db.Column(db.JSON, nullable=True)
 

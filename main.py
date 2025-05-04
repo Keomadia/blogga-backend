@@ -32,7 +32,7 @@ def create_blog_post():
         sections = data.get('sections', [])
         for section_data in sections:
             section = Section(
-            blog_id=blog.id,  # Now blog.id will have a value
+            blog_id=blog.id,  
             section_title=section_data.get('section_title'),
             section_content=section_data.get('section_content'),
             section_img=section_data.get('section_img'),
@@ -85,7 +85,14 @@ def delete_blog_post(blog_id):
         blog = Blog.query.get_or_404(blog_id)
         db.session.delete(blog)
         db.session.commit()
-        return jsonify({"message": "Blog post deleted successfully"}), 200
+        
+        
+        blogs = Blog.query.order_by(Blog.id).all()
+        for index, blog in enumerate(blogs, start=1):
+            blog.id = index
+        db.session.commit()
+        
+        return jsonify({"message": "Blog post deleted and blogs reordered successfully"}), 200
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
