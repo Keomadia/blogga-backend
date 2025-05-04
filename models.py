@@ -24,7 +24,7 @@ class Blog(db.Model):
             "tag": self.tag,
             "authors": self.authors_name,
             "date": self.date.isoformat() if self.date else None,
-            "sections": [section.to_json() for section in self.sections if section.blog_id == self.id],
+            "sections": [section.to_json() for section in sorted(self.sections, key=lambda s: s.id) if section.blog_id == self.id],
             "views": self.views,
             "likes": self.likes,
             "dislikes": self.dislikes,
